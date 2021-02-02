@@ -36,3 +36,25 @@ function cleanArray(array) {
 }
 
 console.log(cleanArray(givenArray)); // [[1,1,1,1],[2,2,2], 4,5,10,[20,20], 391, 392,591]
+
+
+// Bonus: Make it so it organizes strings differently from number types.
+//i.e. [1, "2", "3", 2] should return [[1,2], ["2", "3"]]
+
+const givenArray2 = [1, "2", "3", 2];
+
+function cleanArray2(array) {
+	let workingArray = [...array];
+	workingArray.sort((a, b) => a - b);
+
+	const outputArray2 = [];
+
+	const numberArray = workingArray.filter((el) => typeof el === "number");
+	const stringArray = workingArray.filter((el) => typeof el === "string");
+
+	outputArray2.push(numberArray);
+	outputArray2.push(stringArray);
+
+	return outputArray2;
+}
+console.log(cleanArray2(givenArray2)); //[[1,2], ["2", "3"]]
