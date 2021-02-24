@@ -1,4 +1,4 @@
-# JavaScript Logic Coding Challenge -6
+# JavaScript Logic Coding Challenge (6)
 
 This coding challenge is all about logic and problem solving.
 
