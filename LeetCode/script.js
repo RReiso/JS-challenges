@@ -40,7 +40,6 @@ var hasGroupsSizeX = function (deck) {
 	}
 	//creating an array of cards object values
 	let cardCounts = Object.values(cards);
-  console.log(cardCounts)
 	let result = cardCounts[0];
 	for (let i = 1; i < cardCounts.length; i++) {
 		result = gcd(cardCounts[i], result);
