@@ -29,9 +29,9 @@ twoSum([2, 11, 7, 15], 22);
 // All the cards in each group have the same integer.
 
 var hasGroupsSizeX = function (deck) {
-  if (deck.length < 2){
-    return false;
-  }
+	if (deck.length < 2) {
+		return false;
+	}
 	//object to store cards and the number of occurances
 	let cards = {};
 	for (let i = 0; i < deck.length; i++) {
@@ -56,3 +56,22 @@ function gcd(a, b) {
 }
 
 hasGroupsSizeX([1]);
+
+//Given numBottles full water bottles, you can exchange numExchange
+//empty water bottles for one full water bottle.
+//The operation of drinking a full water bottle turns it into an empty bottle.
+//Return the maximum number of water bottles you can drink.
+var numWaterBottles = function (numBottles, numExchange) {
+	let result = numBottles;
+	do {
+		// how many new bottles to drink:
+		let bottles = Math.floor(numBottles / numExchange);
+		result = result + bottles;
+		//how many empty bottles left:
+		let eB = numBottles % numExchange;
+		//new number of empty bottles:
+		numBottles = bottles + eB;
+	} while (Math.floor(numBottles / numExchange) !== 0);
+	return result;
+};
+numWaterBottles(9, 3);
