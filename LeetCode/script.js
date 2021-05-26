@@ -75,3 +75,20 @@ var numWaterBottles = function (numBottles, numExchange) {
 	return result;
 };
 numWaterBottles(9, 3);
+
+//Running Sum of 1d Array
+//Given an array nums. We define a running sum of an array as 
+//runningSum[i] = sum(nums[0]…nums[i]).
+//Return the running sum of nums.
+var runningSum = function (nums) {
+  let output = [];
+  let accumulator = 0;
+  nums.forEach(element => {
+    accumulator = accumulator + element;
+    output.push(accumulator);
+  });
+  console.log(output);
+  return output;
+};
+
+runningSum([1, 2, 3, 4]);
