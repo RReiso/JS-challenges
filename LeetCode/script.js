@@ -92,3 +92,13 @@ var runningSum = function (nums) {
 };
 
 runningSum([1, 2, 3, 4]);
+
+//Defanging an IP Address
+//Given a valid (IPv4) IP address, return a defanged version of that IP address.
+//A defanged IP address replaces every period "." with "[.]".
+
+var defangIPaddr = function (address) {
+	return address.split(".").join("[.]");
+};
+
+defangIPaddr("1.1.1.1");
