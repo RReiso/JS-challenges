@@ -77,18 +77,18 @@ var numWaterBottles = function (numBottles, numExchange) {
 numWaterBottles(9, 3);
 
 //Running Sum of 1d Array
-//Given an array nums. We define a running sum of an array as 
+//Given an array nums. We define a running sum of an array as
 //runningSum[i] = sum(nums[0]…nums[i]).
 //Return the running sum of nums.
 var runningSum = function (nums) {
-  let output = [];
-  let accumulator = 0;
-  nums.forEach(element => {
-    accumulator = accumulator + element;
-    output.push(accumulator);
-  });
-  console.log(output);
-  return output;
+	let output = [];
+	let accumulator = 0;
+	nums.forEach((element) => {
+		accumulator = accumulator + element;
+		output.push(accumulator);
+	});
+	console.log(output);
+	return output;
 };
 
 runningSum([1, 2, 3, 4]);
@@ -103,27 +103,51 @@ var defangIPaddr = function (address) {
 
 defangIPaddr("1.1.1.1");
 
-
 //Kids With the Greatest Number of Candies
-//Given the array candies and the integer extraCandies, 
+//Given the array candies and the integer extraCandies,
 //where candies[i] represents the number of candies that the ith kid has.
 //For each kid check if there is a way to distribute extraCandies
 // among the kids such that he or she can have the greatest number
 // of candies among them. Notice that multiple kids
 // can have the greatest number of candies.
 var kidsWithCandies = function (candies, extraCandies) {
-const largest = Math.max.apply(0, candies);
-const result = [];
-candies.forEach(element => {
-  if (element + extraCandies >= largest){
-result.push(true);
-  }else{
-    result.push(false);
-  }
-});
-console.log(largest);
-console.log(result);
-return result;
+	const largest = Math.max.apply(0, candies);
+	const result = [];
+	candies.forEach((element) => {
+		if (element + extraCandies >= largest) {
+			result.push(true);
+		} else {
+			result.push(false);
+		}
+	});
+	console.log(largest);
+	console.log(result);
+	return result;
 };
 
-kidsWithCandies([2, 3, 5, 1, 3],3);
+kidsWithCandies([2, 3, 5, 1, 3], 3);
+
+
+//Excel Sheet Column Title
+//Given an integer columnNumber, return its corresponding column title 
+//as it appears in an Excel sheet.
+var convertToTitle = function (columnNumber) {
+	let result = "";
+	let ascii;
+	do {
+		let remainder = columnNumber % 26;
+		let a = Math.floor(columnNumber / 26);
+
+		if (remainder === 0) {
+			columnNumber = a - 1;
+			ascii = 90;
+		} else {
+			columnNumber = a;
+			ascii = remainder + 64;
+		}
+		result = String.fromCharCode(ascii) + result;
+	} while (columnNumber > 0);
+	console.log(result);
+	return result;
+};
+convertToTitle(1000);
