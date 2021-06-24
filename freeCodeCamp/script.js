@@ -169,3 +169,16 @@ return str;
 }
 
 rot13("SERR PBQR PNZC!");
+
+//Telephone Number Validator
+function telephoneCheck(str) {
+
+  str = str.replace(/\s/g, '');//remove spaces
+  var regex = /^1?(\d{3}|\(\d{3}\))[-]?\d{3}[-]?\d{4}$/;
+  var bool = regex.test(str);
+
+  console.log(bool);
+  return bool;
+}
+
+telephoneCheck("1 555)555-5555");
