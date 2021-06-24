@@ -15,7 +15,7 @@ palindrome("1 eye for of 1 eye.")
 
 
 //Roman Numeral Converter
-function convertToRoman(num) {
+function ToRoman(num) {
   const symbols = {
     1: "I",
     4: "IV",
@@ -89,5 +89,53 @@ function convertToRoman(num) {
 }
 
 
+ToRoman(3999);
 
-convertToRoman(3999);
+
+//Second (better) version of Roman Numeral Converter:
+function convertToRoman(num) {
+
+  const ones = ["I","II","III","IV","V","VI","VII","VIII","IX"];
+  const tens = ["X","XX","XXX","XL","L","LX","LXX","LXXX","XC"];
+  const hundreds = ["C","CC","CCC","CD","D","DC","DCC","DCCC","CM"];
+  const thousands = ["M","MM","MMM"];
+
+  
+  let result=""
+  const numString = num.toString();
+
+  for (let i=0; i<numString.length; i++){
+    let power = numString.length-1; //power of 10
+    let divisor = (Math.pow(10,power-i)); //divisor will decrease 1000,100,10,1.
+    let quotient = Math.floor(num/divisor);
+  
+    createRoman(quotient,divisor);
+
+    num = num - quotient*divisor;
+  }
+
+  function createRoman(number,placeValue){
+    if (number === 0){
+      return;
+    }
+    switch(placeValue) {
+  case 1:
+    result = result + ones[number-1]
+    break;
+  case 10:
+    result = result + tens[number-1]
+    break;
+  case 100:
+    result = result + hundreds[number-1]
+    break;
+  default:
+    result = result + thousands[number-1]
+}
+  }
+
+  console.log(result)
+  return result;
+}
+
+
+convertToRoman(2014);
