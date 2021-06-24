@@ -137,5 +137,35 @@ function convertToRoman(num) {
   return result;
 }
 
-
 convertToRoman(2014);
+
+
+//Caesars Cipher
+function rot13(str) {
+
+//check if last char is a punctuation character:
+let lastChar=""
+if (!!str.match(/[.,:!?]$/)){
+  lastChar = str.slice(-1);
+  str = str.slice(0, -1) //remove last char from string
+};
+
+const arrayOfWords = str.split(" ");
+const arrayOfResult=[];
+
+arrayOfWords.forEach(word=>{
+  let result = "";
+
+  for (let i=0; i<word.length; i++){
+    let asciiCode = word[i].charCodeAt();
+    let newCode = asciiCode > 77? asciiCode - 13 : asciiCode + 13;
+    result = result + String.fromCharCode(newCode);
+  }
+  arrayOfResult.push(result);
+})
+
+str = arrayOfResult.join(" ") + lastChar;
+return str;
+}
+
+rot13("SERR PBQR PNZC!");
