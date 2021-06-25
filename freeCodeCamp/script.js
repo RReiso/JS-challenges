@@ -182,3 +182,82 @@ function telephoneCheck(str) {
 }
 
 telephoneCheck("1 555)555-5555");
+
+
+//Cash Register
+function checkCashRegister(price, cash, cid) {
+
+  const currency=[100,20,10,5,1,0.25,0.1,0.05,0.01];
+  let result={status:"INSUFFICIENT_FUNDS",change:[]};
+  let changeDue = roundToTwo(cash - price);
+  let availableCash = 0;
+
+  cid.forEach(unit=>{
+    availableCash+=unit[1];
+  })
+  availableCash=roundToTwo(availableCash);
+
+  if (availableCash === changeDue){
+    result.status="CLOSED";
+    result.change = [...cid];
+ 
+  }else if(availableCash > changeDue){
+  
+
+  cid = cid.reverse();
+ 
+
+  for (let i=0; i<currency.length; i++){
+    if (changeDue>=currency[i]){
+    
+      let amount = cid[i][1]; //amount of the currency unit in cash register
+      let unitValue=currency[i];
+        if (amount>=unitValue){
+          cid[i][1]=getChange(amount,unitValue); //find the amount of each currency unit to give as change
+          result.change.push(cid[i]);
+        }
+      
+      }
+    }
+
+if (changeDue===0){
+        result.status="OPEN";
+}else{
+        result.change=[];
+
+}
+
+
+  }
+        console.log(result)
+ return result;
+
+
+function getChange(amount,unitValue){
+  let nrOfUnits = 0;
+            do{
+              amount=roundToTwo((amount - unitValue));
+             
+              changeDue = roundToTwo(changeDue - unitValue);
+            
+              nrOfUnits++;
+              
+            }while(roundToTwo(amount - unitValue)>=0 && roundToTwo(changeDue - unitValue)>=0);
+          
+          return nrOfUnits*unitValue;
+         
+}
+
+//ensure proper currency format after calculations
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+}
+
+  }
+
+
+ 
+
+
+checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) 
+
