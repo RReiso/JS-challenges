@@ -127,9 +127,8 @@ var kidsWithCandies = function (candies, extraCandies) {
 
 kidsWithCandies([2, 3, 5, 1, 3], 3);
 
-
 //Excel Sheet Column Title
-//Given an integer columnNumber, return its corresponding column title 
+//Given an integer columnNumber, return its corresponding column title
 //as it appears in an Excel sheet.
 var convertToTitle = function (columnNumber) {
 	let result = "";
@@ -151,3 +150,26 @@ var convertToTitle = function (columnNumber) {
 	return result;
 };
 convertToTitle(1000);
+
+// Given an integer array nums, move all 0's to the end of it
+// while maintaining the relative order of the non-zero elements.
+// Note that you must do this in-place without making a copy of the array.
+
+var moveZeroes = function (nums) { //runtime 76 ms
+	numLength = nums.length;
+	counter = 0;
+	for (let i = 0; i < numLength; i++) {
+		if (nums[counter] === 0) {
+			nums.splice(counter, 1);
+			nums.push(0);
+			counter--;
+		}
+		counter++;
+	}
+	console.log(nums);
+	return nums;
+};
+
+moveZeroes([0, 1, 0, 3, 12]);
+moveZeroes([0]);
+moveZeroes([1]);
