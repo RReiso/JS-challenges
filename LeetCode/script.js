@@ -174,3 +174,28 @@ var moveZeroes = function (nums) { //runtime 76 ms
 moveZeroes([0, 1, 0, 3, 12]);
 moveZeroes([0]);
 moveZeroes([1]);
+
+// Word-pattern
+// Given a pattern and a string s, find if s follows the same pattern.
+// Here follow means a full match, such that there is a bijection 
+// between a letter in pattern and a non-empty word in s.
+var wordPattern = function (pattern, s) {
+  pattern_match = {};
+  words = s.split(' ');
+  if (words.length !== pattern.length){
+    return false
+  }
+  for (let i = 0; i < pattern.length; i++){
+		if (
+			!pattern_match[pattern[i]] &&
+			!Object.values(pattern_match).find((el) => el === words[i])
+		) {
+			pattern_match[pattern[i]] = words[i];
+		} else if (pattern_match[pattern[i]] !== words[i]) {
+			return false;
+		}
+	 }
+  return true;
+};
+console.log(wordPattern('abab', 'aa ab aa ab'))
+ 
