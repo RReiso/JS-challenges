@@ -27,3 +27,17 @@ var isPalindrome = function (head) {
 	}
 	return true;
 };
+
+
+var isPalindrome = function (head) {
+	let current = head;
+	let values = "";
+	let reversed = "";
+	while (current) {
+		values += current.val;
+		reversed = current.val + rev;
+		current = current.next;
+	}
+
+	return values === reversed;
+};
