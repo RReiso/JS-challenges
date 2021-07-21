@@ -14,11 +14,12 @@
 
 var isPalindrome = function (head) {
 	let values = [];
+  let reversed = [];
 	while (head) {
 		values.push(head.val);
+    reversed.unshift(head.val);
 		head = head.next;
 	}
-	let reversed = [...values].reverse();
 
 	for (let i = 0; i < values.length; i++) {
 		if (values[i] !== reversed[i]) {
