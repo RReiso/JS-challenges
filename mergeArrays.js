@@ -8,11 +8,22 @@ const merge =  (arr1, arr2) => {
     if (arr1[p1] < arr2[p2]) {
       res.push(arr1[p1]);
       p1++;
-    } else {
+    } else if (arr1[p1] >= arr2[p2]) {
       res.push(arr2[p2])
       p2++
     }
   }
+
+  while (p1 < arr1.length) {
+    res.push(arr1[p1]);
+    p1++;
+  }
+
+  while (p2 < arr2.length) {
+    res.push(arr2[p2]);
+    p2++;
+  }
+
   return res;
 }
 
