@@ -28,4 +28,4 @@ const merge =  (arr1, arr2) => {
 }
 
 // Time - O(n)
-// Space - O(1)
+// Space - O(n)
