@@ -67,6 +67,64 @@ class LinkedList {
     last.next = newNode;
     this.length++;
   }
+  
+  get(index) {
+    let curr = this.head;
+    let currIdx = 0;
+    while (curr) {
+      if (currIdx === index) {
+        return curr;
+      }
+      curr = curr.next;
+      currIdx++;
+    }
+    return null;
+  }
+
+  insert(index, value) {
+    if (index >= this.length || index < 0) return false;
+
+    if (index === 0) {
+      const newNode = new Node(value, this.head);
+      this.head = newNode;
+      return true;
+    }
+
+    let curr = this.head;
+    let currIdx = 0;
+    while (currIdx < index - 1) {
+      curr = curr.next;
+      currIdx++;
+    }
+
+    const newNode = new Node(value, curr.next);
+    curr.next = newNode;
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    if (index >= this.length || index < 0) return false;
+
+    if (index === 0) {
+      return this.shift();
+    }
+
+    let currIdx = 0;
+    let curr = this.head;
+    let prev = curr;
+
+    while (curr) {
+      if (currIdx === index) {
+        prev.next = curr.next;
+        this.length--;
+        return curr;
+      }
+      prev = curr;
+      curr = curr.next;
+      currIdx++;
+    }
+  }
 }
 
 class Node {
