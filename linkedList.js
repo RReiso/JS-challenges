@@ -4,8 +4,8 @@ class LinkedList {
     this.length = 0;
   }
 
-  unshift(data) {
-    var node = new Node(data, this.head);
+  unshift(value) {
+    const node = new Node(value, this.head);
     this.head = node;
     this.length++;
   }
@@ -15,18 +15,18 @@ class LinkedList {
   }
 
   getLast() {
-    let temp = this.head;
-    while (temp && temp.next) {
-      temp = temp.next;
+    let curr = this.head;
+    while (curr && curr.next) {
+      curr = curr.next;
     }
-    return temp;
+    return curr;
   }
 
   clear() {
     this.head = null;
     this.length = 0;
   }
-  
+
   shift() {
     if (!this.head) return null;
 
@@ -45,17 +45,17 @@ class LinkedList {
       return this.shift();
     }
 
-    let temp = this.head;
-    let prev = temp;
+    let curr = this.head;
+    let prev = curr;
 
-    while (temp.next) {
-      prev = temp;
-      temp = temp.next;
+    while (curr.next) {
+      prev = curr;
+      curr = curr.next;
     }
     prev.next = null;
     this.length--;
 
-    return temp;
+    return curr;
   }
 
   push(value) {
@@ -67,7 +67,7 @@ class LinkedList {
     last.next = newNode;
     this.length++;
   }
-  
+
   get(index) {
     let curr = this.head;
     let currIdx = 0;
@@ -82,13 +82,11 @@ class LinkedList {
   }
 
   insert(index, value) {
-    if (index >= this.length || index < 0) return false;
-
     if (index === 0) {
-      const newNode = new Node(value, this.head);
-      this.head = newNode;
-      return true;
+      return this.unshift(65);
     }
+
+    if (index > this.length || index < 0) return false;
 
     let curr = this.head;
     let currIdx = 0;
@@ -125,11 +123,13 @@ class LinkedList {
       currIdx++;
     }
   }
-}
 
-class Node {
-  constructor(data, next) {
-    this.value = data;
-    this.next = next;
+  printNodes() {
+    console.log("length", this.length);
+    let curr = this.head;
+    while (curr) {
+      console.log(curr);
+      curr = curr.next;
+    }
   }
 }
