@@ -1,3 +1,10 @@
+class Node {
+  constructor(data, next) {
+    this.value = data;
+    this.next = next;
+  }
+}
+
 class LinkedList {
   constructor() {
     this.head = null;
