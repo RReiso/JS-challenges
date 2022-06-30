@@ -52,3 +52,53 @@ gameOfLife([
   [1, 1],
   [1, 0],
 ]);
+
+
+
+// Change values in place solution
+// new cell values:
+// 2 - represents currently alive cell (will die)
+// 3 - represents currently dead cell (will live)
+
+var gameOfLife = function (board) {
+  for (let y = 0; y < board.length; y++) {
+    for (let x = 0; x < board[y].length; x++) {
+      let neighbors = 0;
+      for (let i = -1; i < 2; i++) {
+        for (let j = -1; j < 2; j++) {
+          // out of bounds
+          if (y + i < 0 || y + i >= board.length) {
+            continue;
+          }
+          if (x + j < 0 || x + j >= board[0].length) {
+            continue;
+          }
+          if (i == 0 && j == 0) {
+            continue;
+          }
+
+          // As we are changing cell values in place to '2' or '3', we add to 'neighbors' only if the cell is currently alive
+          if (board[y + i][x + j] === 1 || board[y + i][x + j] === 2)
+            neighbors++;
+        }
+      }
+
+      // cell will die
+      if (board[y][x] === 1 && (neighbors < 2 || neighbors > 3)) {
+        board[y][x] = 2;
+      }
+      // cell will live
+      if (board[y][x] === 0 && neighbors === 3) {
+        board[y][x] = 3;
+      }
+    }
+  }
+  // replace with the final values (2 % 2 = 0 - dead; 3 % 2 = 1 - alive)
+  for (let y = 0; y < board.length; y++) {
+    for (let x = 0; x < board[y].length; x++) {
+      board[y][x] %= 2;
+    }
+  }
+  console.log("board", board);
+  return board;
+};
