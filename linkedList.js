@@ -90,7 +90,7 @@ class LinkedList {
 
   insert(index, value) {
     if (index === 0) {
-      return this.unshift(65);
+      return this.unshift(value);
     }
 
     if (index > this.length || index < 0) return false;
