@@ -16,5 +16,27 @@ const fibonacciValue = (n) => {
   }
   // Time - O(n) - max n-2 calls. To calculate F(5), you need F(4), F(3), F(2). F(1), F(0) already in the hashtable.
   // Space - O(n)
+  
+  
+  // Iterative solution
+  if (n <= 1) {
+    return n;
+  }
+
+  let counter = 1;
+  let prev = 0;
+  let curr = 1;
+  let next;
+
+  while (counter < n) {
+    next = prev + curr;
+    prev = curr;
+    curr = next;
+    counter++;
+  }
+
+  return next;
+  // Time - O(n)
+  // Space - O(1)
 };
 
