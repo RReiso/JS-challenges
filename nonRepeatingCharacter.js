@@ -1,1 +1,2 @@
-
+const noRepeatingCharacters = (arr) => {
+}
