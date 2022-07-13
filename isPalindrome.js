@@ -31,4 +31,22 @@ const isPalindrome = (string) => {
 
   // Time - O(n) - two times looping (string and arr)
   // Space - O(n)
+  
+  
+  
+  let i = 0;
+  let j = string.length - 1;
+  
+   while (i < j) {
+    if (string[i] !== string[j]) {
+      return false;
+    } else {
+      i++;
+      j--;
+    }
+  }
+  return true;
+  
+  // Time - O(n/2) => O(n)
+  // Space - O(1)
 };
