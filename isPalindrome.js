@@ -47,6 +47,6 @@ const isPalindrome = (string) => {
   }
   return true;
   
-  // Time - O(n/2) => O(n)
+  // Time - O(n/2 - number of loops) => O(n)
   // Space - O(1)
 };
