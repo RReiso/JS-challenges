@@ -78,3 +78,78 @@ console.log(searchRangeRecursive([1, 2, 3, 5, 5, 5, 5, 7, 8, 9], 5));
 
 // Time - O(logn)
 // Space - O(logn)
+
+
+const searchRangeIterative = (nums, target) => {
+  const leftExtreme = findLeftExtremeIt(nums, target);
+  const rightExtreme = findRightExtremeIt(nums, target);
+  return [leftExtreme, rightExtreme];
+};
+
+const findLeftExtremeIt = (nums, target) => {
+  let left = 0;
+  let right = nums.length - 1;
+  let middle;
+
+  while (left <= right) {
+    middle = Math.floor((left + right) / 2);
+    if (nums[middle] === target) {
+      // MODIFY
+      // check if this is the first element in the array
+      if (middle === 0) {
+        return 0;
+      }
+      // check if previous element is equal to target
+      if (nums[middle - 1] === target) {
+        right = middle - 1;
+      } else {
+        return middle; // previous element is not equal to target => this is left extreme
+      }
+    } else {
+      // CONTINUE with binary search
+      if (nums[middle] < target) {
+        left = middle + 1;
+      } else {
+        right = middle - 1;
+      }
+    }
+  }
+  return -1;
+};
+
+const findRightExtremeIt = (nums, target) => {
+  let left = 0;
+  let right = nums.length - 1;
+  let middle;
+
+  while (left <= right) {
+    middle = Math.floor((left + right) / 2);
+    if (nums[middle] === target) {
+      // MODIFY
+      // check if this is the last element in the array
+      if (middle === nums.length - 1) {
+        return middle;
+      }
+      // check if next element is equal to target
+      if (nums[middle + 1] === target) {
+        left = middle + 1;
+      } else {
+        return middle; // next element is not equal to target => this is right extreme
+      }
+    } else {
+      // CONTINUE with binary search
+      if (nums[middle] < target) {
+        left = middle + 1;
+      } else {
+        right = middle - 1;
+      }
+    }
+  }
+  return -1;
+};
+
+console.log(searchRangeIterative([1, 2, 3, 5, 5, 5, 5, 7, 8, 9], 5));
+console.log(searchRangeIterative([1, 1, 2, 2, 2, 3, 4], 9));
+
+// Time - O(logn)
+// Space - O(1)
